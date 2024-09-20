@@ -22,8 +22,15 @@ public class StudentController {
 
     @PostMapping("/addstudent")
     public void addStudent(@RequestPart("student") Student student,@RequestPart("image") MultipartFile file) throws IOException {
-        student.setImage(file.getBytes());
-        service.addStudent(student);
+
+        try {
+            student.setImage(file.getBytes());
+            service.addStudent(student);
+        } catch (Exception e) {
+            System.out.println("error");
+        }
+
+
     }
 
     @GetMapping("/searchbyid/{id}")
